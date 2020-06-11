@@ -1,0 +1,82 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Ui/game_theme.tres" type="Theme" id=1]
+[ext_resource path="res://Sprites/Backgrounds/tilesetOpenGameBackground.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/CreditsMenu.gd" type="Script" id=3]
+[ext_resource path="res://Ui/block_10.tres" type="DynamicFont" id=4]
+[ext_resource path="res://Ui/block_14.tres" type="DynamicFont" id=5]
+
+[node name="CreditsMenu" type="Control"]
+anchor_left = 0.1
+anchor_top = 0.1
+anchor_right = 0.9
+anchor_bottom = 0.9
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 1 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 8.0
+margin_right = 0.200012
+focus_mode = 2
+custom_fonts/mono_font = ExtResource( 4 )
+custom_fonts/bold_italics_font = ExtResource( 4 )
+custom_fonts/italics_font = ExtResource( 4 )
+custom_fonts/bold_font = ExtResource( 5 )
+custom_fonts/normal_font = ExtResource( 4 )
+bbcode_enabled = true
+bbcode_text = "[center][b]Program and Design[/b]
+Márcio Medeiros
+
+[b]Graphics[/b]
+Paulina Riva https://opengameart.org/users/paur
+GrafxKid https://opengameart.org/users/grafxkid[/center]"
+text = "Program and Design
+Márcio Medeiros
+
+Graphics
+Paulina Riva https://opengameart.org/users/paur
+GrafxKid https://opengameart.org/users/grafxkid"
+scroll_active = false
+selection_enabled = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBox" type="VBoxContainer" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -19.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Back" type="Button" parent="VBox"]
+margin_left = 153.0
+margin_right = 186.0
+margin_bottom = 19.0
+focus_neighbour_bottom = NodePath("../Play")
+size_flags_horizontal = 4
+text = "Back"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+scroll_limit_end = Vector2( 320, 0 )
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2( 320, 0.1 )
+
+[node name="tilesetOpenGameBackground" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+texture = ExtResource( 2 )
+centered = false
+[connection signal="pressed" from="VBox/Back" to="." method="_on_Back_pressed"]
