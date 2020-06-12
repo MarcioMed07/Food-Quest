@@ -5,6 +5,8 @@ export (String, FILE,"*.tscn") var NEXT_LEVEL_SCENE
 var time = MAX_TIME
 
 func _ready():
+	var pause_instance = preload("res://Scenes/Menus/PauseMenu.tscn").instance()
+	add_child(pause_instance)
 	pass
 	
 func _process(delta):

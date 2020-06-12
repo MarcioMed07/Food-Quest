@@ -7,20 +7,36 @@ var screen_mode = 0
 var screen_resolution = 0
 
 func _ready():
-	$VBox/Music/MusicSlider.grab_focus()
-	for i in range(SCREEN_MODES.size()):
-		$VBox/ScreenMode/ScreenModeButton.add_item(SCREEN_MODES[i], i)
-
-	for i in range(SCREEN_RESOLUTIONS.size()):
-		$VBox/Resolution/ResolutionButton.add_item(SCREEN_RESOLUTIONS[i], i)
-	refresh_screen_options()
+	if $VBox/Music/MusicSlider:
+		$VBox/Music/MusicSlider.grab_focus()
+	
+	refresh_screen_options($VBox/ScreenMode/ScreenModeButton,$VBox/Resolution/ResolutionButton)
 	pass
 
-func refresh_screen_options():
+func refresh_screen_options(screen_mode_node, resolution_node):
+	if !(screen_mode_node && resolution_node):
+		return
+	var curr_screen_modes = []
+	for i in range(screen_mode_node.get_item_count()):
+		curr_screen_modes.push_back (screen_mode_node.get_item_text(i))
+		
+	var curr_resolutions = []
+	for i in range(resolution_node.get_item_count()):
+		curr_resolutions.push_back (resolution_node.get_item_text(i))
+		
+	for i in range(SCREEN_MODES.size()):
+		var aux = SCREEN_MODES[i]
+		if curr_screen_modes.find(aux) == -1:
+			screen_mode_node.add_item(aux, i)
+			
+	for i in range(SCREEN_RESOLUTIONS.size()):
+		var aux = SCREEN_RESOLUTIONS[i]
+		if curr_resolutions.find(aux) == -1:
+			resolution_node.add_item(SCREEN_RESOLUTIONS[i], i)
 	screen_mode = get_screen_mode()
-	screen_resolution = get_screen_resolution()
-	$VBox/ScreenMode/ScreenModeButton.selected = screen_mode
-	$VBox/Resolution/ResolutionButton.selected = screen_resolution
+	screen_resolution = get_screen_resolution(resolution_node)
+	screen_mode_node.selected = screen_mode
+	resolution_node.selected = screen_resolution
 	pass
 
 func get_screen_mode():
@@ -31,11 +47,11 @@ func get_screen_mode():
 			return 2
 	return 0
 
-func get_screen_resolution():
+func get_screen_resolution(resolution_node):
 	var size_str = str(OS.window_size.x,"x",OS.window_size.y)
 	var aux = SCREEN_RESOLUTIONS.find(size_str)
 	if aux == -1:
-		$VBox/ScreenMode/ScreenModeButton.add_item(size_str,SCREEN_MODES.size())
+		resolution_node.add_item(size_str,SCREEN_MODES.size())
 		aux = SCREEN_RESOLUTIONS.find(size_str)
 	return aux
 
@@ -65,11 +81,11 @@ func _on_ScreenModeButton_item_selected(id):
 			OS.window_fullscreen = false
 			OS.window_borderless = false
 			_on_ResolutionButton_item_selected(0)
-	refresh_screen_options()
+	refresh_screen_options($VBox/ScreenMode/ScreenModeButton,$VBox/Resolution/ResolutionButton)
 	pass
 func _on_ResolutionButton_item_selected(id):
 	var size_str = SCREEN_RESOLUTIONS[id]
 	var sizes = size_str.split("x")
 	OS.window_size = Vector2(int(sizes[0]),int(sizes[1]))
-	refresh_screen_options()
+	refresh_screen_options($VBox/ScreenMode/ScreenModeButton,$VBox/Resolution/ResolutionButton)
 	pass

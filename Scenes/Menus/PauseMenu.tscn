@@ -1,0 +1,222 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scripts/PauseMenu.gd" type="Script" id=1]
+[ext_resource path="res://Ui/game_theme.tres" type="Theme" id=2]
+[ext_resource path="res://Ui/pixel_20.tres" type="DynamicFont" id=3]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+pause_mode = 2
+layer = 2
+
+[node name="PauseMenu" type="Control" parent="."]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 2 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="PauseMenu"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.533333 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="PauseMenu/ColorRect"]
+anchor_top = 0.05
+anchor_right = 1.0
+anchor_bottom = 0.05
+margin_bottom = 17.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="PauseMenu/ColorRect/CenterContainer"]
+margin_left = 152.0
+margin_right = 273.0
+margin_bottom = 22.0
+custom_fonts/font = ExtResource( 3 )
+text = "Game Paused"
+
+[node name="VBox" type="VBoxContainer" parent="PauseMenu/ColorRect"]
+anchor_left = 0.1
+anchor_top = 0.5
+anchor_right = 0.9
+anchor_bottom = 0.5
+margin_top = -52.5
+margin_bottom = 52.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Music" type="HBoxContainer" parent="PauseMenu/ColorRect/VBox"]
+margin_right = 340.0
+margin_bottom = 16.0
+
+[node name="MusicLabel" type="Label" parent="PauseMenu/ColorRect/VBox/Music"]
+margin_top = 3.0
+margin_right = 59.0
+margin_bottom = 13.0
+text = "Music Volume"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MusicSlider" type="HSlider" parent="PauseMenu/ColorRect/VBox/Music"]
+margin_left = 63.0
+margin_right = 318.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MusicNumber" type="Label" parent="PauseMenu/ColorRect/VBox/Music"]
+margin_left = 322.0
+margin_top = 3.0
+margin_right = 340.0
+margin_bottom = 13.0
+text = " 000"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sound" type="HBoxContainer" parent="PauseMenu/ColorRect/VBox"]
+margin_top = 20.0
+margin_right = 340.0
+margin_bottom = 36.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SoundLabel" type="Label" parent="PauseMenu/ColorRect/VBox/Sound"]
+margin_top = 3.0
+margin_right = 59.0
+margin_bottom = 13.0
+text = "Sound Volume"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SoundSlider" type="HSlider" parent="PauseMenu/ColorRect/VBox/Sound"]
+margin_left = 63.0
+margin_right = 318.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SoundNumber" type="Label" parent="PauseMenu/ColorRect/VBox/Sound"]
+margin_left = 322.0
+margin_top = 3.0
+margin_right = 340.0
+margin_bottom = 13.0
+text = " 000"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Resolution" type="HBoxContainer" parent="PauseMenu/ColorRect/VBox"]
+margin_top = 40.0
+margin_right = 340.0
+margin_bottom = 59.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Resolution" type="Label" parent="PauseMenu/ColorRect/VBox/Resolution"]
+margin_top = 4.0
+margin_right = 46.0
+margin_bottom = 14.0
+text = "Resolution"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ResolutionButton" type="OptionButton" parent="PauseMenu/ColorRect/VBox/Resolution"]
+margin_left = 50.0
+margin_right = 340.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScreenMode" type="HBoxContainer" parent="PauseMenu/ColorRect/VBox"]
+margin_top = 63.0
+margin_right = 340.0
+margin_bottom = 82.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScreenModeLabel" type="Label" parent="PauseMenu/ColorRect/VBox/ScreenMode"]
+margin_top = 4.0
+margin_right = 55.0
+margin_bottom = 14.0
+text = "Screen Mode"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScreenModeButton" type="OptionButton" parent="PauseMenu/ColorRect/VBox/ScreenMode"]
+margin_left = 59.0
+margin_right = 340.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PauseMenu/ColorRect"]
+anchor_top = 0.95
+anchor_right = 1.0
+anchor_bottom = 0.95
+margin_top = -19.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer2" type="CenterContainer" parent="PauseMenu/ColorRect/HBoxContainer"]
+margin_right = 211.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+
+[node name="MainMenu" type="Button" parent="PauseMenu/ColorRect/HBoxContainer/CenterContainer2"]
+margin_left = 68.0
+margin_right = 143.0
+margin_bottom = 19.0
+focus_neighbour_bottom = NodePath("../Play")
+size_flags_horizontal = 3
+text = "Main Menu"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="PauseMenu/ColorRect/HBoxContainer"]
+margin_left = 215.0
+margin_right = 426.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+
+[node name="Resume" type="Button" parent="PauseMenu/ColorRect/HBoxContainer/CenterContainer"]
+margin_left = 79.0
+margin_right = 132.0
+margin_bottom = 19.0
+focus_neighbour_bottom = NodePath("../Play")
+size_flags_horizontal = 3
+text = "Resume"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="value_changed" from="PauseMenu/ColorRect/VBox/Music/MusicSlider" to="PauseMenu" method="_on_MusicSlider_value_changed"]
+[connection signal="value_changed" from="PauseMenu/ColorRect/VBox/Sound/SoundSlider" to="PauseMenu" method="_on_SoundSlider_value_changed"]
+[connection signal="item_selected" from="PauseMenu/ColorRect/VBox/Resolution/ResolutionButton" to="PauseMenu" method="_on_ResolutionButton_item_selected"]
+[connection signal="item_selected" from="PauseMenu/ColorRect/VBox/ScreenMode/ScreenModeButton" to="PauseMenu" method="_on_ScreenModeButton_item_selected"]
+[connection signal="pressed" from="PauseMenu/ColorRect/HBoxContainer/CenterContainer2/MainMenu" to="PauseMenu" method="_on_MainMenu_pressed"]
+[connection signal="pressed" from="PauseMenu/ColorRect/HBoxContainer/CenterContainer/Resume" to="PauseMenu" method="_on_Resume_pressed"]
