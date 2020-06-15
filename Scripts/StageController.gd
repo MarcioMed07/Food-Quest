@@ -11,8 +11,6 @@ func _ready():
 	
 func _process(delta):
 	time -= delta
-#	if time <=0:
-		#GameController.change_scene(NEXT_LEVEL_SCENE)
 
 func _on_ObjectiveArea_body_entered(body):
 	if body.name == "Player":

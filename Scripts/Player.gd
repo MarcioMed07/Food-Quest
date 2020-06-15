@@ -13,22 +13,35 @@ const AIR_DECELERATION = 0.015
 const JUMP_FORCE = 200
 const WALL_JUMP_SPEED = 90
 const AUTO_GRAPPLING = true
+const IFRAME_TRESH = 2
 export var SLEEP_THRESH = 2
 var velocity = Vector2.ZERO
 var sleep_count = 0
+var iframe_count = IFRAME_TRESH
 var sprinting  = 1
 
 func _process(delta):
+	update_ui()
 	velocity.y = min(velocity.y + GRAVITY, TERMINAL_FALL_SPEED)
-	if is_on_floor():
-		move_on_floor(delta)
-	else:
-		move_on_air(delta)
+	if $Sprite.animation != "Damage":
+		if is_on_floor():
+			move_on_floor(delta)
+		else:
+			move_on_air(delta)
+		velocity = move_and_slide(velocity, Vector2.UP)
 	
-	velocity = move_and_slide(velocity, Vector2.UP)
-	
+		if iframe_count <= IFRAME_TRESH:
+			iframe_count += delta
+			if fmod(iframe_count,0.20) <= delta:
+				visible = !visible
+		else:
+			visible = true
 	pass
-	
+
+func update_ui():
+	if $HUD:
+		$HUD/Control/LifeLabel.text = "Health: " + str(PlayerVariables.health)
+		$HUD/Control/FpsLabel.text = "FPS: " + str(Engine.get_frames_per_second())
 func move_on_floor(delta):
 	if Input.is_action_just_pressed("jump"):
 		velocity.y = -JUMP_FORCE
@@ -51,9 +64,9 @@ func move_on_floor(delta):
 	else:
 		velocity.x = lerp(velocity.x, 0, DECELERATION)
 		$Sprite.play("Idle")
-		if sleep_count > SLEEP_THRESH:
+		if sleep_count >= SLEEP_THRESH:
 			$Sprite.play("Sleep")
-		sleep_count += delta
+		sleep_count = min(sleep_count + delta, SLEEP_THRESH)
 	pass
 
 func move_on_air(_delta):
@@ -70,7 +83,6 @@ func move_on_air(_delta):
 	else:
 		velocity.x = lerp(velocity.x, 0, AIR_DECELERATION)
 	if is_on_wall():
-		print('p',velocity.x)
 		$Sprite.play("Slide")
 		var collision_dir = 0
 		for i in range(get_slide_count()):
@@ -92,3 +104,22 @@ func move_on_air(_delta):
 			$Sprite.play("Fall")
 	pass
 
+
+
+func _on_Hitbox_area_entered(area):
+	if area.get_collision_layer_bit(2):
+		if global_position.y - area.global_position.y <= -4:
+			velocity.y = -JUMP_FORCE
+		elif iframe_count >= IFRAME_TRESH:
+			iframe_count = 0
+			$Sprite.play("Damage")
+			PlayerVariables.health -= 1
+			if PlayerVariables.health <= 0:
+				GameController.change_scene("res://Scenes/Menus/StartMenu.tscn")
+	pass # Replace with function body.
+
+
+func _on_Sprite_animation_finished():
+	if $Sprite.animation == "Damage":
+		$Sprite.play("Idle")
+	pass # Replace with function body.

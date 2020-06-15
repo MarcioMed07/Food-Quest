@@ -12,6 +12,4 @@ func change_scene(new_stage_path):
 		cur_stage.get_parent().remove_child(cur_stage)
 	cur_stage = load(new_stage_path).instance()
 	get_node("/root/Game").add_child(cur_stage)
-	
-	
 	pass
