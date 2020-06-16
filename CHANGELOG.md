@@ -2,7 +2,11 @@
 This Changelog will hopefully document all notable changes in the project
 
 ---
-## [0.1.1] - 2020-06-20
+## [0.1.2] - 2020-06-16
+### Added
+- Game Over Screen
+---
+## [0.1.1] - 2020-06-15
 ### Added
 - Basic Enemy
 - Player killing enemy stomping on its head

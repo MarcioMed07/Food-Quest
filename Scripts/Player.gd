@@ -104,8 +104,6 @@ func move_on_air(_delta):
 			$Sprite.play("Fall")
 	pass
 
-
-
 func _on_Hitbox_area_entered(area):
 	if area.get_collision_layer_bit(2):
 		if global_position.y - area.global_position.y <= -4:
@@ -115,7 +113,10 @@ func _on_Hitbox_area_entered(area):
 			$Sprite.play("Damage")
 			PlayerVariables.health -= 1
 			if PlayerVariables.health <= 0:
-				GameController.change_scene("res://Scenes/Menus/StartMenu.tscn")
+				var camera_node = get_node("Camera2D")
+				camera_node.get_parent().remove_child(camera_node)
+				area.add_child(camera_node)
+				queue_free()
 	pass # Replace with function body.
 
 

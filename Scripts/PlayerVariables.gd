@@ -1,2 +1,3 @@
 extends Node
-var health = 10
+const INITIAL_HEALTH = 3
+var health = INITIAL_HEALTH

@@ -7,6 +7,8 @@ var time = MAX_TIME
 func _ready():
 	var pause_instance = preload("res://Scenes/Menus/PauseMenu.tscn").instance()
 	add_child(pause_instance)
+	var game_over_instance = preload("res://Scenes/Menus/GameOverMenu.tscn").instance()
+	add_child(game_over_instance)
 	pass
 	
 func _process(delta):

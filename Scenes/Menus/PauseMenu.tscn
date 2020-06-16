@@ -4,7 +4,7 @@
 [ext_resource path="res://Ui/game_theme.tres" type="Theme" id=2]
 [ext_resource path="res://Ui/pixel_20.tres" type="DynamicFont" id=3]
 
-[node name="CanvasLayer" type="CanvasLayer"]
+[node name="PauseLayer" type="CanvasLayer"]
 pause_mode = 2
 layer = 2
 

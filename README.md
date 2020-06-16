@@ -2,7 +2,6 @@
 A simple platform game made in godot game engine to learn the tool and spend some time.
 
 ## To do:
-* Game over
 * Music and sound
 * Scoring Points
 * Between stages animation
@@ -18,4 +17,5 @@ A simple platform game made in godot game engine to learn the tool and spend som
 * Map tileset
 * Pause
 * Enemies
-* Taking damage;
+* Taking damage
+* Game over

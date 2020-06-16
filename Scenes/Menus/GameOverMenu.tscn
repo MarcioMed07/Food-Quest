@@ -1,0 +1,75 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Ui/game_theme.tres" type="Theme" id=1]
+[ext_resource path="res://Ui/pixel_48.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Scripts/GameOverMenu.gd" type="Script" id=3]
+
+[node name="GameOverLayer" type="CanvasLayer"]
+
+[node name="GameOverMenu" type="Control" parent="."]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="GameOverMenu"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.533333 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="GameOverMenu/ColorRect"]
+anchor_top = 0.05
+anchor_right = 1.0
+anchor_bottom = 0.05
+margin_bottom = 17.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="GameOverMenu/ColorRect/CenterContainer"]
+margin_left = 99.0
+margin_right = 326.0
+margin_bottom = 50.0
+custom_fonts/font = ExtResource( 2 )
+text = "Game Over"
+
+[node name="VBox" type="VBoxContainer" parent="GameOverMenu/ColorRect"]
+anchor_left = 0.1
+anchor_top = 0.5
+anchor_right = 0.9
+anchor_bottom = 0.5
+margin_top = -21.0
+margin_bottom = 21.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MainMenu" type="Button" parent="GameOverMenu/ColorRect/VBox"]
+margin_right = 340.0
+margin_bottom = 19.0
+focus_neighbour_bottom = NodePath("../Play")
+size_flags_horizontal = 3
+text = "Main Menu"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="QuitGame" type="Button" parent="GameOverMenu/ColorRect/VBox"]
+margin_top = 23.0
+margin_right = 340.0
+margin_bottom = 42.0
+focus_neighbour_bottom = NodePath("../Play")
+size_flags_horizontal = 3
+text = "Quit Game"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="GameOverMenu/ColorRect/VBox/MainMenu" to="GameOverMenu" method="_on_MainMenu_pressed"]
+[connection signal="pressed" from="GameOverMenu/ColorRect/VBox/QuitGame" to="GameOverMenu" method="_on_QuitGame_pressed"]

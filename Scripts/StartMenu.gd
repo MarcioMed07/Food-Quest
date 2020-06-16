@@ -6,6 +6,7 @@ func _ready():
 	pass
 
 func _on_Play_pressed():
+	PlayerVariables.health = PlayerVariables.INITIAL_HEALTH
 	GameController.change_scene("res://Scenes/Stages/Stage1.tscn")
 	pass
 
