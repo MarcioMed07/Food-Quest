@@ -2,6 +2,13 @@
 This Changelog will hopefully document all notable changes in the project
 
 ---
+## [0.1.3] - 2020-07-06
+### Added
+- Looking down holding the down arrow
+### Changed
+- Tileset sprites
+- Some movement fine adjustments
+---
 ## [0.1.2] - 2020-06-16
 ### Added
 - Game Over Screen
